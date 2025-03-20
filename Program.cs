@@ -87,7 +87,8 @@ app.Urls.Add($"http://*:{port}");
 app.UseExceptionHandler("/error");
 
 // **Removed UseHttpsRedirection()** because Render handles HTTPS
-app.UseCors("AllowSpecificOrigin");
+app.UseCors("AllowAllOrigins");
+
 
 app.UseAuthentication();
 app.UseAuthorization();
