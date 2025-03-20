@@ -8,17 +8,13 @@ using Microsoft.IdentityModel.Tokens;
 using Serilog;
 using System.Text;
 
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Load environment variables from .env file
 DotNetEnv.Env.Load();
 Log.Logger = new LoggerConfiguration()
-         
-           .WriteTo.File("logs/log.txt", rollingInterval: RollingInterval.Day) 
-           .CreateLogger();
-
-
+    .WriteTo.File("logs/log.txt", rollingInterval: RollingInterval.Day)
+    .CreateLogger();
 
 var jwtSettings = builder.Configuration.GetSection("JwtSettings");
 var secretKey = jwtSettings["SecretKey"];
@@ -26,9 +22,9 @@ var issuer = jwtSettings["Issuer"];
 var audience = jwtSettings["Audience"];
 
 // Validate JWT settings
-if (string.IsNullOrEmpty(secretKey) )throw new InvalidOperationException("JWT Secret Key is missing.");
+if (string.IsNullOrEmpty(secretKey)) throw new InvalidOperationException("JWT Secret Key is missing.");
 if (secretKey.Length < 32) throw new InvalidOperationException("JWT Secret Key is too short.");
-if (string.IsNullOrEmpty(issuer) )throw new InvalidOperationException("JWT Issuer is missing.");
+if (string.IsNullOrEmpty(issuer)) throw new InvalidOperationException("JWT Issuer is missing.");
 if (string.IsNullOrEmpty(audience)) throw new InvalidOperationException("JWT Audience is missing.");
 
 // Get the connection string from an environment variable
@@ -70,24 +66,29 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
-// Configure CORS
+// Configure CORS for both local and deployed frontend
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowSpecificOrigin", builder =>
+    options.AddPolicy("AllowAllOrigins", builder =>
     {
-        builder.WithOrigins("http://localhost:5174")
+        builder.AllowAnyOrigin()
                .AllowAnyHeader()
-               .AllowAnyMethod()
-               .AllowCredentials();
+               .AllowAnyMethod();
     });
 });
 
 var app = builder.Build();
 
+// **PORT FIX**: Ensure Render assigns the correct port
+var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
+app.Urls.Add($"http://*:{port}");
+
 // Global exception handling
 app.UseExceptionHandler("/error");
-app.UseHttpsRedirection();
+
+// **Removed UseHttpsRedirection()** because Render handles HTTPS
 app.UseCors("AllowSpecificOrigin");
+
 app.UseAuthentication();
 app.UseAuthorization();
 
