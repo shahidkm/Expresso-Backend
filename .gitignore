@@ -1,0 +1,23 @@
+# Ignore Visual Studio specific files
+.vscode/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Ignore build artifacts
+bin/
+obj/
+*.pdb
+*.exe
+*.dll
+*.log
+
+# Ignore environment files
+.env
+
+# Ignore EF migrations history
+Migrations/
+
+# Ignore node_modules (if using Node.js in the frontend)
+node_modules/
