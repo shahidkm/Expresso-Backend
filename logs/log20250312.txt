@@ -1,0 +1,16 @@
+2025-03-12 08:58:14.621 +05:30 [INF] Hello, Serilog!
+2025-03-12 09:20:11.737 +05:30 [INF] Hello, Serilog!
+2025-03-12 09:22:57.335 +05:30 [INF] Hello, Serilog!
+2025-03-12 09:26:03.810 +05:30 [INF] Hello, Serilog!
+2025-03-12 09:26:04.444 +05:30 [INF] Hello, Serilog!
+2025-03-12 09:26:25.180 +05:30 [INF] Hello, Serilog!
+2025-03-12 09:26:25.526 +05:30 [INF] Hello, Serilog!
+2025-03-12 09:29:51.468 +05:30 [INF] Hello, Serilog!
+2025-03-12 09:29:51.527 +05:30 [INF] Hello, Serilog!
+2025-03-12 09:30:16.247 +05:30 [INF] Hello, Serilog!
+2025-03-12 09:30:16.550 +05:30 [INF] Hello, Serilog!
+2025-03-12 09:33:19.979 +05:30 [INF] Hello, Serilog!
+2025-03-12 09:33:20.470 +05:30 [INF] Hello, Serilog!
+2025-03-12 09:33:31.144 +05:30 [INF] Hello, Serilog!
+2025-03-12 09:33:31.428 +05:30 [INF] Hello, Serilog!
+2025-03-12 09:33:54.598 +05:30 [INF] Hello, Serilog!
